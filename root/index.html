@@ -1,0 +1,23 @@
+<!--
+	{%= name %}
+
+	Copyright (c) {%= grunt.template.today('yyyy') %} {%= author_name %}
+	Licensed under the {%= licenses.join(', ') %} license{%= licenses.length === 1 ? '' : 's' %}.
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{%=name%}</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+	</head>
+	<body>
+		<!--
+			TODO: code here!
+		-->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/underscore.min.js"></script>
+		<script type="text/javascript" src="js/{%=name%}.js"></script>
+	</body>
+</html>

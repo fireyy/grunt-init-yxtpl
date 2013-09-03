@@ -1,0 +1,4 @@
+{
+	"js/name.js": "js/{%= name %}.js",
+	"test/test_name.js": "test/test_{%= name %}.js"
+}
