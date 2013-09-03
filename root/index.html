@@ -1,10 +1,3 @@
-<!--
-	{%= name %}
-
-	Copyright (c) {%= grunt.template.today('yyyy') %} {%= author_name %}
-	Licensed under the {%= licenses.join(', ') %} license{%= licenses.length === 1 ? '' : 's' %}.
--->
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -27,47 +20,106 @@
 </head>
 
 <body>
-		<!--
-			TODO: code here!
-		-->
-		<script type="text/javascript" src="js/{%=name%}.js"></script>
-		<script type="text/javascript" charset="utf-8">
-    $(document).ready(function(){
-      //锚点跳转滑动效果
-      $('a[href*=#],area[href*=#]').click(function() {
-          if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-              var $target = $(this.hash);
-              $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
-              if ($target.length) {
-                  var targetOffset = $target.offset().top;
-                  $('html,body').animate({ scrollTop: targetOffset }, 1000);
-                  return false;
-              }
-          }
-      });
-      //悬浮导航
-      $(window).bind("scroll resize", function () {
-        var _availWidth = window.screen.availWidth;
-        var winWidth = $(window).width();
-        var winHeight = $(window).height();
-        if (_availWidth > 1250 && $(window).scrollTop() > winHeight) {
-          $('.page_nav_left, .page_nav_right').css('visibility', 'visible');
-        } else {
-          $('.page_nav_left, .page_nav_right').css('visibility', 'hidden');
+  <!-- author:{%= author_name %} -->
+  <!-- date:{%= grunt.template.today('yyyymmdd') %} -->
+  <style type="text/css">
+  .page_event { text-align: left; position: relative; width: 100%; z-index: 1; background: #F7D604; }
+  .page_event_body { width: 100%; position: relative; z-index: 3; }
+  .page_event_bg { position: absolute; width: 100%; left: 0; top: 0; z-index: 2; }
+  .page_event_bg div { width: 100%; height: 300px; background-position: center top; background-repeat: no-repeat; }
+  
+  html, html body { _text-overflow: ellipsis; }
+  .page_nav_left, .page_nav_right { visibility: hidden; z-index: 50; position: fixed; _position: absolute; top: 0; left: 50%; padding-top: 10px; zoom: 1; _top: expression(eval(document.documentElement.scrollTop)); }
+  .page_nav_left { width: 108px; height: 527px; margin-left: -622px; }
+  .page_nav_left .nav_bg { width: 108px; height: 527px; }
+  .page_nav_left .inner { width: 108px; height: 527px; margin-top: -527px; }
+  .page_nav_left a { display: block; width: 108px; height: 98px; position: relative; margin-bottom: 2px; }
+
+  .page_nav_right { width: 46px; height: 457px; margin-left: 512px; }
+  .page_nav_right .inner { width: 46px; height: 457px; }
+  .page_nav_right a { display: block; cursor: pointer; width: 46px; height: 46px; position: relative; }
+  </style>
+  <div class="page_event">
+    <div class="page_event_body">
+      <!--evt_header S-->
+      <div id="evt_header"></div>
+      <!--evt_header E-->
+      <!--evt_floors1 S-->
+      <div id="evt_floors" class="evt_floors">
+        <div class="evt_mod">
+          <div class="hd">hd</div>
+          <div class="bd">bd</div>
+        </div>
+      </div>
+      <!--evt_floors1 E-->
+    </div>
+    <!--背景 S-->
+    <div class="page_event_bg">
+      <div class="bg1" data-oxlazy="a_1.png"></div>
+      <div class="bg2" data-oxlazy="a_2.png"></div>
+      <div class="bg3" data-oxlazy="a_3.png"></div>
+    </div>
+    <!--背景 E-->
+  </div>
+  
+  <!--左侧导航 S -->
+  <div class="page_nav_left">
+      <div class="nav_bg"></div>
+      <div class="inner">
+          <a href="#" target="_blank" class="pl_lk1" title=""><i></i></a>
+      </div>
+  </div>
+  <!--左侧导航 E -->
+
+  <!--右侧导航 S -->
+  <div class="page_nav_right">
+      <div class="inner">
+          <a class="pr_lk0" href="#evt_header" title="回到顶部"><i></i></a>
+      </div>
+  </div>
+  <!--右侧导航 E -->
+  
+  <!--
+  	TODO: code here!
+  -->
+  <script type="text/javascript" src="js/{%=name%}.js"></script>
+  <script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    //锚点跳转滑动效果
+    $('a[href*=#],area[href*=#]').click(function() {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            var $target = $(this.hash);
+            $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
+            if ($target.length) {
+                var targetOffset = $target.offset().top;
+                $('html,body').animate({ scrollTop: targetOffset }, 1000);
+                return false;
+            }
         }
-      });
-      //加入购物车
-      $('.btn_common').each(function() {
-        _thisHtml = $(this).html();
-        $(this).html('');
-        if (_thisHtml == '加入购物车') {
-           $(this).attr({'class':'btn_buy', 'title':'立即购买'});
-        } else {
-           $(this).attr({'class':'btn_buy_disabled', 'title':'已售完', 'href':'javascript:;'});
-           $(this).removeAttr('target');
-        }
-      });
-    })
-		</script>
+    });
+    //悬浮导航
+    $(window).bind("scroll resize", function () {
+      var _availWidth = window.screen.availWidth;
+      var winWidth = $(window).width();
+      var winHeight = $(window).height();
+      if (_availWidth > 1250 && $(window).scrollTop() > winHeight) {
+        $('.page_nav_left, .page_nav_right').css('visibility', 'visible');
+      } else {
+        $('.page_nav_left, .page_nav_right').css('visibility', 'hidden');
+      }
+    });
+    //加入购物车
+    $('.btn_common').each(function() {
+      _thisHtml = $(this).html();
+      $(this).html('');
+      if (_thisHtml == '加入购物车') {
+         $(this).attr({'class':'btn_buy', 'title':'立即购买'});
+      } else {
+         $(this).attr({'class':'btn_buy_disabled', 'title':'已售完', 'href':'javascript:;'});
+         $(this).removeAttr('target');
+      }
+    });
+  })
+  </script>
 </body>
 </html>
