@@ -5,19 +5,69 @@
 	Licensed under the {%= licenses.join(', ') %} license{%= licenses.length === 1 ? '' : 's' %}.
 -->
 
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>{%=name%}</title>
-		<link rel="stylesheet" type="text/css" href="css/main.css">
-	</head>
-	<body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<meta name="keywords" content="U盘,手机,读卡器,数码相机,MP3/MP4，手机电池，相机电池，数码摄影包，液晶保护膜，手机膜贴，镜头滤镜，Mp3/MP附件,手机充电器,相机清洁用品,蓝牙耳机,单反相机,iPod 附件,数码相框,USB播放器, 易迅网" />
+<meta name="description" content="买手机 数码相机 单反相机 MP3/MP4 摄像机 配件 电池 充电器 耳机 存储卡去哪里？就上易迅网。12小时送达、天天低价"/>
+<link rel="stylesheet" href="http://static.gtimg.com/icson/css/common/v0/gb.css?t=20130903192145" type="text/css" media="screen" />
+<link href="http://st.icson.com/static_v1/css/icson/event.css?v=2012091801" rel="stylesheet" type="text/css" />
+<script type="text/javascript">document.domain = /51buy\.com/.test(location.host) ? '51buy.com' : 'yixun.com';</script>
+<script type="text/javascript" src="http://st.icson.com/static_v1/js/jquery-1.5.1.min.js" charset="gb2312"></script>
+<script type="text/javascript" src="http://st.icson.com/static_v1/js/global.js?v=2013080701" charset="gb2312"></script>
+<script type="text/javascript" src="http://st.icson.com/static_v1/js/app/switchSite.js?v=2012041301" charset="gb2312"></script>
+<script type="text/javascript" src="http://st.icson.com/static_v1/js/app/static_html.js?v=2013012801"></script>
+<script type="text/javascript" src="http://st.icson.com/static_v1/js/app/event.js?v=2013073001" charset="gb2312"></script>
+<script type="text/javascript" src="http://st.icson.com/static_v1/js/app/question.js" charset="gb2312"></script>
+<script type="text/javascript">var allSiteProdInfoJson = [];</script>
+<title>{%=name%} - 易迅网</title>
+
+</head>
+
+<body>
 		<!--
 			TODO: code here!
 		-->
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/underscore.min.js"></script>
 		<script type="text/javascript" src="js/{%=name%}.js"></script>
-	</body>
+		<script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+      //锚点跳转滑动效果
+      $('a[href*=#],area[href*=#]').click(function() {
+          if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+              var $target = $(this.hash);
+              $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
+              if ($target.length) {
+                  var targetOffset = $target.offset().top;
+                  $('html,body').animate({ scrollTop: targetOffset }, 1000);
+                  return false;
+              }
+          }
+      });
+      //悬浮导航
+      $(window).bind("scroll resize", function () {
+        var _availWidth = window.screen.availWidth;
+        var winWidth = $(window).width();
+        var winHeight = $(window).height();
+        if (_availWidth > 1250 && $(window).scrollTop() > winHeight) {
+          $('.page_nav_left, .page_nav_right').css('visibility', 'visible');
+        } else {
+          $('.page_nav_left, .page_nav_right').css('visibility', 'hidden');
+        }
+      });
+      //加入购物车
+      $('.btn_common').each(function() {
+        _thisHtml = $(this).html();
+        $(this).html('');
+        if (_thisHtml == '加入购物车') {
+           $(this).attr({'class':'btn_buy', 'title':'立即购买'});
+        } else {
+           $(this).attr({'class':'btn_buy_disabled', 'title':'已售完', 'href':'javascript:;'});
+           $(this).removeAttr('target');
+        }
+      });
+    })
+		</script>
+</body>
 </html>
