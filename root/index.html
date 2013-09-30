@@ -23,32 +23,217 @@
   <!-- author:{%= author_name %} -->
   <!-- date:{%= grunt.template.today('yyyymmdd') %} -->
   <style type="text/css">
-  .page_event { text-align: left; position: relative; width: 100%; z-index: 1; background: #F7D604; }
-  .page_event_body { width: 100%; position: relative; z-index: 3; }
-  .page_event_bg { position: absolute; width: 100%; left: 0; top: 0; z-index: 2; }
-  .page_event_bg div { width: 100%; height: 300px; background-position: center top; background-repeat: no-repeat; }
-  
-  html, html body { _text-overflow: ellipsis; }
-  .page_nav_left, .page_nav_right { visibility: hidden; z-index: 50; position: fixed; _position: absolute; top: 0; left: 50%; padding-top: 10px; zoom: 1; _top: expression(eval(document.documentElement.scrollTop)); }
-  .page_nav_left { width: 108px; height: 527px; margin-left: -622px; }
-  .page_nav_left .nav_bg { width: 108px; height: 527px; }
-  .page_nav_left .inner { width: 108px; height: 527px; margin-top: -527px; }
-  .page_nav_left a { display: block; width: 108px; height: 98px; position: relative; margin-bottom: 2px; }
+  .page_event { text-align: left; position: relative; width: 100%; z-index: 1; background: #002047; }
+  .evt_page_body { width: 100%; position: relative; z-index: 3; }
+  .evt_page_bg { position: absolute; width: 100%; left: 0; top: 0; z-index: 2; }
+  .evt_page_bg div { width: 100%; height: 200px; background-position: center top; background-repeat: no-repeat; }
+  .evt_page_bg .bg3 { height: 165px;}
 
-  .page_nav_right { width: 46px; height: 457px; margin-left: 512px; }
-  .page_nav_right .inner { width: 46px; height: 457px; }
-  .page_nav_right a { display: block; cursor: pointer; width: 46px; height: 46px; position: relative; }
+  #evt_header .inner { height: 400px; width: 985px; margin: 0 auto; position: relative;}
+  #evt_header .inner .evt_link { position: absolute; left: -10px; top: 10px; width: 110px; height: 70px; }
+
+  #evt_coupon { height: 146px; width: 945px; padding: 26px 0 0 40px; margin: 0 auto; overflow: hidden; *zoom:1;}
+  #evt_coupon a { float: left;*display: line; margin: 0 30px 0 32px;width: 240px; height: 120px; background: url(a_4.png) no-repeat;}
+  #evt_coupon .evt_coupon2 { background-position: -240px 0;}
+  #evt_coupon .evt_coupon3 { background-position: -480px 0;}
+
+
+  /*--- <editor-fold desc="楼层公用"> ---*/
+  .page_event .evt_floor { margin-bottom: 25px;}
+  .page_event .evt_mod { background: #FDC600;width: 985px; margin: 0 auto;}
+  .page_event .hd { position: relative;}
+  .page_event .hd h2 { display: none;}
+  .page_event .evt_floor_title { display: block;}
+  .page_event .hd .evt_keywords { position: absolute; right: 10px; top: 55px;}
+  .page_event .hd .evt_keywords a { color: #fff; font-size: 16px; margin-right: 10px; }
+  .page_event .bd { padding: 9px 0 8px 9px;}
+
+  .evt_tabs { height: 45px; background: #FD9419;}
+  .evt_tabs li { float: left;}
+  .evt_tabs li a { display: block; text-align: center;width: 246px;height: 45px; background: #FD9419; color: #FFD674; font-size: 24px;  line-height: 45px; text-decoration: none;}
+  .evt_tabs li a.selected { background: #F75D57; color: #fff;}
+  .evt_tab_panel { display: none;}
+  .evt_band_list li { float: left; width: 240px; height: 288px; margin: 0 3px 3px 0;}
+  .evt_band_list li img { border: 0; vertical-align: top; width: 240px;}
+
+  .evt_banner li { float: left; position: relative;}
+  .evt_banner li img { vertical-align: top;}
+  .evt_banner li.evt_li_last { margin-right: 0;}
+
+  .evt_banner_239 li { width: 239px; margin-right: 9px;}
+  .evt_banner_321 li { width: 321px; margin-right: 9px;}
+  /*--- </editor-fold> ---*/
+
+  /*--- <editor-fold desc="商品组公用"> ---*/
+  .page_event .pd_items { *margin-bottom: 3px; }
+  .page_event .pd_items li { float: left;width: 200px; height: 353px; position: relative; padding: 9px 20px 0; background: #fff; margin: 0 3px 3px 0;transition: all 0.3s linear;-webkit-transition: all 0.3s linear; }
+  .page_event .pd_items li:hover { box-shadow: rgba(0,0,0,0.7) 0 0 8px;transform: translateY(-5px);-webkit-transform: translateY(-5px);z-index: 8;}
+  .page_event .pd_cover { background: none;width: 240px; height: 422px;padding: 0; overflow: hidden;transition: none;-webkit-transition: none;}
+  .page_event .pd_cover:hover { box-shadow: none;transform: none;-webkit-transform: none;}
+  .page_event .pd_cover img { vertical-align: top; width: 239px;}
+  .page_event .pd_pic { display: block;width: 100%; height: 200px; margin: 6px 0 10px; text-align: center; position: relative; }
+  .page_event .pd_pic img { vertical-align: top;}
+  .page_event .pd_grade { height: 20px; margin-bottom: 9px; color: #999;}
+  .page_event .pd_grade a { color: #999;}
+  .page_event .icon_star { width: 120px; height: 20px; font-size: 12px; line-height: 20px; background: url(a_6.png) no-repeat 0 -144px;}
+  .page_event .icon_star b { height: 20px; background: url(a_6.png) no-repeat 0 -164px;}
+  .page_event .pd_price_wrap { text-align: left;height: 45px; color: #F65D58; overflow: hidden; *zoom:1; }
+  .page_event .pd_price_old { color: #999; font-size: 12px;}
+  .page_event .pd_price_old b { font-weight: normal;text-decoration: line-through;}
+  .page_event .pd_price { color: #F75D57; font-size: 16px; }
+  .page_event .pd_price em { font-weight: bold;margin-right: 5px;}
+  .page_event .pd_price b { font-weight: bold;font-size: 26px; line-height: 28px; }
+  .page_event .evt_text_ellipsis { text-align: left;width: 100%; font-size: 14px; font-weight: normal; color: #333; line-height: 22px; height: 22px; overflow:hidden; white-space: nowrap;text-overflow: ellipsis; }
+  .page_event .pd_name a { color: #262626;}
+  .page_event .pd_promotion { height: 18px; line-height: 18px; color: #FF6259; margin-bottom: 4px;}
+  .page_event .pd_cart { width: 200px;height: 36px;overflow: hidden; }
+  .page_event .pd_cart a { display: block; height: 36px;background: url(a_6.png) no-repeat 50% 0; text-indent: -999em; overflow: hidden;border: none;padding: 0; }
+  .page_event .pd_cart .btn_buy:hover { background-position: 0 -36px;}
+  .page_event .pd_cart .btn_masker { background-position: 0 -108px;}
+  .page_event .pd_cart .btn_buy_disabled { background-position: 0 -72px;}
+  .page_event .pd_sub { display: none; position:absolute;left:-15px; top:-5px; width:51px;height:57px; padding:14px 10px 0 10px; background:url(a_7.png) no-repeat 0 -142px; font-family: "\5FAE\8F6F\96C5\9ED1", sans-serif; font-size:18px; color:white; line-height:20px; text-align:center; -webkit-transform: rotate(-15deg) translate3d( 0, 0, 0);transform: rotate(-15deg);}
+  .page_event .pd_sub_s1 { background-position: 0 0;}
+  .page_event .pd_sub_s2 { background-position: 0 -71px;}
+  .page_event .pd_sub_s3 { background-position: 0 -142px;}
+  .page_event .pd_sub_s4 { font-size: 22px;width:51px;height:47px; padding:24px 10px 0 10px;}
+  /* 倒计时商品 */
+  .page_event .pd_items .pd_item_timer { height: 403px;}
+  /* 爆款热门商品 */
+  .page_event .pd_items .pd_item_hot { width: 443px; height: 260px;overflow: hidden; *zoom: 1;}
+  .page_event .pd_item_hot .pd_pic { float: left; width: 200px; padding-right: 20px;}
+  .page_event .pd_item_hot .pd_info { overflow: hidden; *zoom: 1; padding-top: 10px;}
+  .page_event .pd_item_hot .pd_price_wrap { height: 60px;}
+  .page_event .pd_item_hot .pd_price b { font-size: 32px; line-height: 32px;}
+  .page_event .pd_item_hot .pd_price_old { font-size: 14px;}
+  .page_event .pd_item_hot .pd_promotion { margin-bottom: 15px;}
+  .page_event .pd_item_hot .pd_grade { margin-bottom: 20px;}
+  /*--- </editor-fold> ---*/
+
+  /*--- <editor-fold desc="倒计时模块"> ---*/
+  .evt_countdown { height: 21px; font-size: 16px; color: #555; margin: 0 auto; text-align: center; width: 150px;}
+  .evt_countdown s { float: left;width: 21px; height: 21px; background: url(a_5.png) no-repeat -30px 0; margin: -3px 12px 0 0; font-size: 0;}
+  .evt_countdown span { float: left; text-align: left;width: 26px; height: 15px; line-height: 35px; font-size: 28px; font-weight: bold; color: #fff; margin-right: 0; letter-spacing: 12px; text-indent: 4px;}
+  .evt_countdown em { float: left; text-align: left;width: 10px; height: 15px; background: url(a_5.png) no-repeat -30px -27px; *display: inline; margin: 0 1px 0 3px;}
+  .evt_countdown span i { float: left; width: 10px; height: 15px; margin-right: 2px; background: url(a_5.png) no-repeat; text-indent: -999em; overflow: hidden;}
+  .evt_countdown span i.n0 { background-position: 0 0;}
+  .evt_countdown span i.n1 { background-position: 0 -30px;}
+  .evt_countdown span i.n2 { background-position: 0 -60px;}
+  .evt_countdown span i.n3 { background-position: 0 -90px;}
+  .evt_countdown span i.n4 { background-position: 0 -120px;}
+  .evt_countdown span i.n5 { background-position: 0 -150px;}
+  .evt_countdown span i.n6 { background-position: 0 -180px;}
+  .evt_countdown span i.n7 { background-position: 0 -210px;}
+  .evt_countdown span i.n8 { background-position: 0 -240px;}
+  .evt_countdown span i.n9 { background-position: 0 -270px;}
+  .evt_countdown_hot span i.n0,
+  li:hover .evt_countdown span i.n0 { background-position: -15px 0;}
+  .evt_countdown_hot span i.n1,
+  li:hover .evt_countdown span i.n1 { background-position: -15px -30px;}
+  .evt_countdown_hot span i.n2,
+  li:hover .evt_countdown span i.n2 { background-position: -15px -60px;}
+  .evt_countdown_hot span i.n3,
+  li:hover .evt_countdown span i.n3 { background-position: -15px -90px;}
+  .evt_countdown_hot span i.n4,
+  li:hover .evt_countdown span i.n4 { background-position: -15px -120px;}
+  .evt_countdown_hot span i.n5,
+  li:hover .evt_countdown span i.n5 { background-position: -15px -150px;}
+  .evt_countdown_hot span i.n6,
+  li:hover .evt_countdown span i.n6 { background-position: -15px -180px;}
+  .evt_countdown_hot span i.n7,
+  li:hover .evt_countdown span i.n7 { background-position: -15px -210px;}
+  .evt_countdown_hot span i.n8,
+  li:hover .evt_countdown span i.n8 { background-position: -15px -240px;}
+  .evt_countdown_hot span i.n9,
+  li:hover .evt_countdown span i.n9 { background-position: -15px -270px;}
+  .evt_countdown_hot, li:hover .evt_countdown { color: #f75d57;}
+  .evt_countdown_hot span i,li:hover .evt_countdown span i { background-image: url(a_5.png);}
+  .evt_countdown_hot s, li:hover .evt_countdown s { background-position: -51px 0;}
+  .evt_countdown_hot em, li:hover .evt_countdown em { background-position: -40px -27px;}
+  /*--- </editor-fold> ---*/
+
+  /*--- <editor-fold desc="楼层独立样式"> ---*/
+  #evt_floor1 .hd h2 { height: 80px;}
+  #evt_floor1 .bd { padding-top: 5px;}
+
+  #evt_others .evt_mod { background: none;}
+  #evt_others .bd { padding: 0;}
+  .evt_985 { width: 985px; margin-bottom: 10px;}
+  .evt_985 img { vertical-align: top;}
+
+  #evt_desc { margin-bottom: 0;}
+  #evt_desc .evt_mod { background: #043B7F;}
+  #evt_desc .hd { height: 90px; background: url(a_8.png) no-repeat;}
+  #evt_desc .bd { padding: 0 60px 20px;}
+  #evt_desc ul { font-size: 14px; color: #fff; line-height: 22px;}
+  #evt_desc ul li { padding-left: 24px; background: url(a_10.png) no-repeat 0 5px; margin-bottom: 8px;}
+  #evt_desc ul { padding-top: 8px;}
+  #evt_desc ul li li { background-position: 0 -378px;}
+  /*--- </editor-fold> ---*/
+
+  /*--- <editor-fold desc="悬浮导航"> ---*/
+  html, html body { _text-overflow: ellipsis; }
+  .evt_nav { visibility: hidden; z-index: 50; position: fixed; _position: absolute; top: 0; left: 50%; padding-top: 10px; zoom: 1; _top: expression(eval(document.documentElement.scrollTop)); }
+  .evt_nav_left { width: 108px; height: 400px; margin-left: -610px; }
+  .evt_nav_left .inner { width: 108px; height: 400px; }
+  .evt_nav_left a { display: block; width: 108px; margin-bottom: 2px; }
+  .evt_nav_left a img { vertical-align: top; }
+
+  .evt_nav_right { width: 133px; height: 300px; margin-left: 500px; }
+  .evt_nav_right .inner { width: 133px; height: 300px; }
+  .evt_nav_right a { display: block; cursor: pointer; width: 70px; height: 50px; position: relative; background: url(a_9.png) no-repeat; }
+  .evt_nav_right a:hover { width: 133px; left: -63px;}
+  .evt_nav_right .evt_link1 { background-position: 0 0; }
+  .evt_nav_right .evt_link1:hover { background-position: -76px 0; }
+  .evt_nav_right .evt_link2 { background-position: 0 -50px; }
+  .evt_nav_right .evt_link2:hover { background-position: -76px -50px; }
+  .evt_nav_right .evt_link3 { background-position: 0 -100px; }
+  .evt_nav_right .evt_link3:hover { background-position: -76px -100px; }
+  .evt_nav_right .evt_link4 { background-position: 0 -150px; }
+  .evt_nav_right .evt_link4:hover { background-position: -76px -150px; }
+  .evt_nav_right .evt_link5 { background-position: 0 -200px; }
+  .evt_nav_right .evt_link5:hover { background-position: -76px -200px; }
+  .evt_nav_right .evt_link0 { background-position: 0 -250px; }
+  .evt_nav_right .evt_link0:hover { background-position: -76px -250px; }
+  /*--- </editor-fold> ---*/
   </style>
   <div class="page_event">
-    <div class="page_event_body">
+    <div class="evt_page_body">
       <!--evt_header S-->
       <div id="evt_header"></div>
       <!--evt_header E-->
+      <!--evt_coupon S-->
+      <div id="evt_header"></div>
+      <!--evt_coupon E-->
       <!--evt_floors1 S-->
       <div id="evt_floors" class="evt_floors">
         <div class="evt_mod">
           <div class="hd">hd</div>
-          <div class="bd">bd</div>
+          <div class="bd">
+            <ul class="pd_items clearfix">
+                <li class="pd_item_hot pd_item_timer">
+                    <div class="evt_countdown"><i></i></div>
+                    <div class="pd_pic200 pd_pic">
+                        <a href="http://item.51buy.com/item-582331.html" target="_blank" title="Samsung 三星 GALAXY S4 I9508 16G 3G（GSM/TD-SCDMA）手机 皓月白 移动定制版"><img src="http://st.icson.com/51buy_v3/img/gb/blank.gif" data-oxlazy="http://img1.icson.com/product/pic200/21/008/21-008-10227.jpg" alt=""/></a>
+                        <div class="pd_sub">限时</div>
+                    </div>
+                    <div class="pd_info">
+                        <div class="pd_price_wrap">
+                            <div class="pd_price"><em>&yen;</em><b>4188.00</b></div>
+                            <div class="pd_price_old"><em>参考价：</em><b>&yen;5199.00</b></div>
+                        </div>
+                        <h3 class="pd_name evt_text_ellipsis"><a href="http://item.51buy.com/item-582331.html" target="_blank" title="Samsung 三星 GALAXY S4 I9508 16G 3G（GSM/TD-SCDMA）手机 皓月白 移动定制版">Samsung 三星 GALAXY S4 I9508 16G 3G（GSM/TD-SCDMA）手机 皓月白 移动定制版</a></h3>
+                        <h4 class="pd_promotion evt_text_ellipsis">速度抢！盖世4 移动版，5英寸1080P屏+四核1.9G CPU！与你心意合一！</h4>
+                        <div class="pd_grade">
+                            <span class="icon_star"><b style="width: 99%;"></b></span>
+                            （<a target="_blank" href="http://item.yixun.com/item-400859.html#review_box">1079条</a>）
+                        </div>
+                        <div class="pd_cart">
+                            <a href="http://buy.51buy.com/cart.html?pid=582331&pnum=1" target="_blank" class="btn_common">加入购物车</a>
+                        </div>
+                    </div>
+                </li>
+             </ul>
+          </div>
         </div>
       </div>
       <!--evt_floors1 E-->
@@ -61,27 +246,34 @@
     </div>
     <!--背景 E-->
   </div>
-  
   <!--左侧导航 S -->
-  <div class="page_nav_left">
-      <div class="nav_bg"></div>
+  <div class="evt_nav_left evt_nav">
       <div class="inner">
-          <a href="#" target="_blank" class="pl_lk1" title=""><i></i></a>
+          <a class="evt_link" href="#"><img src="c_1.png" alt=""/></a>
+          <a class="evt_link" href="#"><img src="c_1.png" alt=""/></a>
+          <a class="evt_link" href="#"><img src="c_1.png" alt=""/></a>
+          <a class="evt_link" href="#"><img src="c_1.png" alt=""/></a>
       </div>
   </div>
   <!--左侧导航 E -->
-
   <!--右侧导航 S -->
-  <div class="page_nav_right">
+  <div class="evt_nav_right evt_nav">
       <div class="inner">
-          <a class="pr_lk0" href="#evt_header" title="回到顶部"><i></i></a>
+          <a class="evt_link1" href="#evt_floor1" title="爆款疯抢"><i></i></a>
+          <a class="evt_link2" href="#evt_floor2" title="开学特惠"><i></i></a>
+          <a class="evt_link3" href="#evt_floor3" title="平板专区"><i></i></a>
+          <a class="evt_link4" href="#evt_floor4" title="潮流数码"><i></i></a>
+          <a class="evt_link5" href="#evt_floor5" title="更多推荐"><i></i></a>
+          <a class="evt_link0" href="#evt_header" title="回到顶部"><i></i></a>
       </div>
   </div>
   <!--右侧导航 E -->
-  
-  <!--
-  	TODO: code here!
-  -->
+  <!--[if IE 6]>
+  <script src="http://cdn.staticfile.org/dd_belatedpng/0.0.8/dd_belatedpng.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      DD_belatedPNG.fix(".pd_sub");
+  </script>
+  <![endif]-->
   <script type="text/javascript" src="js/{%=name%}.js"></script>
   <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
@@ -102,7 +294,7 @@
       var _availWidth = window.screen.availWidth;
       var winWidth = $(window).width();
       var winHeight = $(window).height();
-      if (_availWidth > 1250 && $(window).scrollTop() > winHeight) {
+      if (winWidth > 1250 && $(window).scrollTop() > winHeight) {
         $('.page_nav_left, .page_nav_right').css('visibility', 'visible');
       } else {
         $('.page_nav_left, .page_nav_right').css('visibility', 'hidden');
@@ -119,7 +311,32 @@
          $(this).removeAttr('target');
       }
     });
-  })
+  });
+  //当角标有内容时显示
+  $(function(){
+      var arr = {
+          "pd_sub_s1": ["限时","售罄","人气","限量","满减","好评","送券","热销","爆款","开抢"],
+          "pd_sub_s2": ["底价","折","特价","off","立减","直降"]
+      };
+      $(".pd_items li").each(function(){
+          var pd_sub = $(this).find(".pd_sub");
+          if(pd_sub.length > 0){
+              var h = pd_sub.html();
+              if(h != ""){
+                  if(h.length < 4) pd_sub.addClass("pd_sub_s4");
+                  for(var z in arr){
+                      for(var i=0;i<arr[z].length;i++){
+                          if(h.indexOf(arr[z][i]) != -1) {
+                              pd_sub.addClass(z);
+                              continue;
+                          }
+                      }
+                  }
+                  pd_sub.show();
+              }
+          }
+      });
+  });
   </script>
 </body>
 </html>
